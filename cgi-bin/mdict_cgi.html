@@ -1,0 +1,320 @@
+
+
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        * {
+            font-family: Georgia, Serif;
+            line-height: 160%;
+        }
+
+        .p_sticky {
+            font-family: pt sans narrow, arial narrow;
+            font-size: 5pt;
+            color: #aaa;
+            background: white;
+            position: -webkit-sticky;
+            /* Safari */
+            position: sticky;
+            top: 0;
+            right: 0;
+            margin: 0;
+            text-align: right;
+            padding: 0;
+            z-order: 9999;
+        }
+
+        pre {
+            font-family: Fira Mono, Jetbrains Sans Mono, monospace;
+            font-size: 7pt;
+        }
+
+        h1 {
+            color: #999;
+            text-align: center;
+        }
+
+        pre {
+            font-size: 12pt;
+        }
+
+        .hl {
+            background-color: greenyellow;
+            border: 1px dotted #0ec40e;
+        }
+
+        div>div#navLateral, article>header.c-page-header {position:relative;}
+
+        #main {
+            margin: 0 auto;
+            width: 83%;
+            max-width: 900px;
+            text-align: left;
+            padding: 10px 20px;
+            background: #fbfbfb;
+            border: 1px dotted #fbfbfb;
+        }
+
+        a,
+        a:link,
+        a:visited {
+            cursor: pointer;
+            color: rgb(158, 176, 187);
+            color: darkblue;
+            text-decoration: none !important;
+            -webkit-transition: color 1s ease, background-color 1s ease;
+            -moz-transition: color 1s ease, background-color 1s ease;
+            -o-transition: color 1s ease, background-color 1s ease;
+            transition: color 1s ease, background-color 1s ease;
+        }
+
+        a:hover {
+            color: darkred;
+            background-color: yellow;
+            background-color2: #daffcf;
+        }
+
+        body {
+            padding: 1em 4em;
+            text-align: center;
+        }
+
+        dl,
+        dd,
+        dt {
+            text-align: left;
+        }
+
+        label {
+            font-size: smaller;
+            color: #999;
+        }
+
+        * {
+            font-family: ".AppleSystemUIFont", Helvetica, Arial, sans-serif;
+            line-height: 1.6;
+        }
+
+        .ipa {
+            font-family: Symbol;
+            font-size: 13pt;
+        }
+
+        select {
+            border: none;
+			max-width: 15em;
+        }
+
+        .container {
+            margin: 0 auto;
+            width: 83%;
+            max-width: 650px;
+            text-align: left;
+            padding: 0 10px 20px;
+        }
+
+        /*
+	  input[type=submit] {
+		border: 1px dotted lightgray;
+		margin: 1em;
+		padding: 0.4em;
+		-webkit-border-radius: 4px;
+		-moz-border-radius: 4px;
+		border-radius: 4px;
+	  }
+	  */
+
+        .btn {
+            border: 0;
+            margin: .5em 1em;
+            padding: 0.1em 0.4em;
+            background-image: -webkit-linear-gradient(top, #e2e1e1, #cfcfcf);
+            background-image: -moz-linear-gradient(top, #e2e1e1, #cfcfcf);
+            background-image: -ms-linear-gradient(top, #e2e1e1, #cfcfcf);
+            background-image: -o-linear-gradient(top, #e2e1e1, #cfcfcf);
+            background-image: linear-gradient(to bottom, #e2e1e1, #cfcfcf);
+            -webkit-border-radius: 4px;
+            -moz-border-radius: 4px;
+            border-radius: 4px;
+            -webkit-box-shadow: 2px 2px 1px #cecece;
+            -moz-box-shadow: 2px 2px 1px #cecece;
+            box-shadow: 2px 2px 1px #cecece;
+            color: #ffffff;
+            font-size: 20px;
+            background: #e2e1e1;
+            text-decoration: none;
+        }
+
+        .btn:hover {
+            background: #f3f3f3;
+            background-image: -webkit-linear-gradient(top, #f3f3f3, #e2e1e1);
+            background-image: -moz-linear-gradient(top, #f3f3f3, #e2e1e1);
+            background-image: -ms-linear-gradient(top, #f3f3f3, #e2e1e1);
+            background-image: -o-linear-gradient(top, #f3f3f3, #e2e1e1);
+            background-image: linear-gradient(to bottom, #f3f3f3, #e2e1e1);
+            text-decoration: none;
+        }
+
+        input[type=text] {
+            -webkit-box-shadow: rgba(29, 36, 23, 0.386719) -2px 3px 4px 0px;
+            -moz-box-shadow: rgba(29, 36, 23, 0.386719) -2px 3px 4px 0px;
+            box-shadow: rgba(29, 36, 23, 0.386719) -2px 3px 4px 0px;
+            -webkit-border-radius: 4px;
+            -moz-border-radius: 4px;
+            border-radius: 4px;
+            border: 0;
+            margin: 0 1em;
+            padding: 0.1em 0.4em;
+            font-size: 20px;
+        }
+
+        input[type=text] {
+            background-color: rgb(250, 250, 250);
+        }
+
+        .src li {
+            font-size: 9pt;
+        }
+
+        dt {
+            font-size: 150%;
+            font-weight: bold;
+            color: #ff9001;
+        }
+
+        hr {
+            border: 1px dotted lightgray;
+        }
+
+        .part {
+            display: block;
+            border-left: 7px solid rgb(233, 233, 233);
+            margin: 1em 0;
+            padding: .5em 1.5em;
+            background-color: #f7f5f5;
+        }
+
+        a,
+        a:link,
+        a:visited {
+            cursor: pointer;
+            color: rgb(158, 176, 187);
+            text-decoration: none !important;
+            -webkit-transition: color 1s ease, background-color 1s ease;
+            -moz-transition: color 1s ease, background-color 1s ease;
+            -o-transition: color 1s ease, background-color 1s ease;
+            transition: color 1s ease, background-color 1s ease;
+        }
+
+        a:hover {
+            color: #86b692;
+            background-color: #daffcf;
+        }
+
+        .example {
+            list-style-type: "\1F4A1";
+            padding-left: .7em;
+        }
+
+        .syn li {
+            list-style-type: "\223C";
+            padding-left: .7em;
+        }
+
+        .ant li {
+            list-style-type: "\2260";
+            padding-left: .7em;
+        }
+
+        @media screen and (max-width:600px) {
+            body {
+                padding: 0;
+                margin: 0
+            }
+
+            .container {
+                margin: 0;
+                width: auto;
+                text-align: left;
+                padding: .7em;
+            }
+        }
+
+        .hl {
+            background-color: greenyellow;
+            border: 1px dashed darkgreen;
+        }
+    </style>
+<!--    SEE: https://markjs.io-->
+<!--    SEE: https://cdnjs.com/libraries/mark.js-->
+<!--    SEE: https://www.jsdelivr.com/package/npm/mark.js-->
+<!--    <script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>-->
+    <script src="mark.min.js"
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script type="text/javascript">
+		function isMixedCase(s) {
+			const lower = s.toLowerCase();
+			const upper = s.toUpperCase();
+			return s !== lower && s !== upper;
+		}
+
+		function normalizeCase(s) {
+			return isMixedCase(s) && s.toLowerCase() || s;
+		}
+        document.addEventListener("readystatechange", event => {
+            if (event.target.readyState === "complete") {
+                const form = window.document.forms.frm;
+
+                var params = new URLSearchParams(document.location.search);
+
+                const path = params.get("path");
+                form.path.value = path;
+                var term = params.get('q');
+
+                if (term) {
+                    form.q.value = term;
+                    colorize(term);
+                }
+
+                var content = document.querySelector('.content');
+
+                content.addEventListener('dblclick', function (e) {
+                    var selectedWord = document.getSelection().toString().trim();
+
+                    if (selectedWord) {
+						form.q.value = normalizeCase(selectedWord);
+						form.submit();
+                    }
+                });
+
+            }
+        });
+
+        function colorize(term) {
+            var instance = new Mark(document.getElementById("main"));
+            var rx = new RegExp(term, "gi");
+            instance.markRegExp(rx, {
+                "element": "span",
+                "className": "hl"
+            });
+        }
+    </script>
+</head>
+
+<body>
+    <div id="main" class="container">
+        <form name="frm" action="#">
+            <input type="text" name="q" id="q" value="" autofocus>
+            <input type="submit" id="search" class="btn" value="🔎 ">
+            <label for="dict">&#x1F4D6;</label>
+            <select name="path" id="path">
+                $$${{{DICT_OPTIONS}}}
+            </select>
+        </form>
+<p class=p_sticky>$$${{{DICT_NAME}}}</p>
+<div class='content'>
+

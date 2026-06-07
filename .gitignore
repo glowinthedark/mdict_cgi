@@ -1,0 +1,4 @@
+cgi-bin/__pycache__/
+__pycache__/
+.mdict_temp_assets/
+static/
