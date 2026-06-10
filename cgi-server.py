@@ -86,7 +86,8 @@ if __name__ == '__main__':
 	print(f"DICT_DIR: {dict_dir}")
 	print(f"MDICT_TEMP_ASSETS_DIR: {static_dir}")
 	server_address = (server_bind_ip, server_port)
-	webbrowser.open(f'http://{server_bind_ip}:{server_port}/cgi-bin/mdict_cgi.py')
+	url = f'http://{server_bind_ip}:{server_port}/cgi-bin/mdict_cgi.py'
+	webbrowser.open(url)
 	server = HTTPServer(server_address, DebugRequestHandler)
-	print(f'Starting CGI server on http://{server_bind_ip}:{server_port}/cgi-bin/mdict_cgi.py')
+	print(f'Starting CGI server: {url}')
 	server.serve_forever()
