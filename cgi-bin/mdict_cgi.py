@@ -1,4 +1,4 @@
-#!/opt/homebrew/bin/python3
+#!/usr/bin/env python3
 import logging
 import os
 import posixpath
@@ -35,14 +35,19 @@ __all__ = ["MDD", "MDX"]
 
 log = logging.getLogger(__name__)
 
-DICT_DIR = os.getenv("DICT_DIR") or "dictionaries"
+MDICT_CGI_VERSION = "0.8"
+DICT_DIR = os.path.expanduser(os.getenv("DICT_DIR") or "dictionaries")
 
-if not Path(DICT_DIR).expanduser().exists():
-	print("Content-type: text/html\n")
-	print(f"""<h3 style='color:red'>Dictionary directory {DICT_DIR} does not exist!</h3>
-    		\n<p>Please modify the default path in <code>config.py<code> or set the environment variable <tt>DICT_DIR</tt> 
-      to a valid directory path containing your .mdx/.mdd files.</p>
-      Or pass the env var from command line:<br>
+sys.stdout.reconfigure(encoding="utf-8")
+
+
+if not Path(DICT_DIR).exists():
+	sys.stdout.write("Content-type: text/html; charset=utf-8\n\n")
+	sys.stdout.write(f"""<h1>mdict_cgi v{MDICT_CGI_VERSION}</h1>
+      <h3 style='color:red'>Dictionary directory {DICT_DIR} does not exist!</h3>
+    		\n<p>Please set a valid <tt>DICT_DIR</tt> in <tt>config.py</tt> or set the environment variable <tt>DICT_DIR</tt> 
+      to a valid directory path containing your <tt>.mdx/.mdd</tt> files.</p>
+      E.g. start with custom env var from command line:<br>
       <pre>DICT_DIR=/path/to/dict/dir python3 cgi-server.py</pre>
       """)
 	exit(1)
@@ -1432,7 +1437,7 @@ class Dictionary:
 
 
 def main():
-	print("Content-type: text/html\n")
+	sys.stdout.write("Content-type: text/html; charset: utf-8\n\n")
 
 	html = (Path(__file__).parent / "mdict_cgi.html").read_text(encoding="utf8")
 
@@ -1446,15 +1451,14 @@ def main():
 	reader = None
 
 	dict_dir_path = Path(DICT_DIR).expanduser()
-	path_in = (dict_dir_path / path).resolve()
+	path_in = (dict_dir_path / path).resolve() if path else None
 
-	if path_in.exists():
+	if path_in and path_in.exists():
 		mdict_data = Dictionary()
 		reader = Reader(glos=mdict_data)
 		reader.open(str(path_in.absolute()))
 		dict_name = mdict_data.info.get("name") or path_in.stem
 		html = html.replace("$$${{{DICT_NAME}}}", dict_name)
-
 
 	f: Path
 	options = "\n".join(
@@ -1464,7 +1468,7 @@ def main():
 	)
 	#
 	html = html.replace("$$${{{DICT_OPTIONS}}}", options)
-	print(html)
+	sys.stdout.write(html)
 
 	# NB: `if reader:` would be falsy for dicts with no entries counted yet, because
 	# Reader.__len__ returns wordCount+dataEntryCount (0 when there are no .mdd files and
@@ -1476,12 +1480,12 @@ def main():
 					reader.extract_assets(defi)
 				except OSError as e:
 					sys.stderr.write(f"asset extraction failed: {e}\n")
-				print(defi)
+				sys.stdout.write(defi)
 		else:
-			print("""<pre>""")
-			print("\n".join(kword for _, kword in reader._mdx._key_list[:max]))
-			print("""</pre>""")
-	print("""</div>
+			sys.stdout.write("""<pre>""")
+			sys.stdout.write("\n".join(kword for _, kword in reader._mdx._key_list[:max]))
+			sys.stdout.write("""</pre>""")
+	sys.stdout.write("""</div>
 </div>
 </body>
 </html>""")
